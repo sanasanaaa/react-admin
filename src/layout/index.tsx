@@ -1,16 +1,29 @@
+import { useEffect } from 'react'
 import { Layout } from 'antd'
 import SideNav from './SideNav'
 import HeaderView from './Header'
 import { Outlet } from 'react-router'
-
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css';
 import './style.scss'
-import { useStore } from '@/store'
 import { observer } from 'mobx-react'
+
 
 
 const { Content} = Layout;
 
+NProgress.configure({ showSpinner: false }) 
+
 function LayoutView() {     
+    // 使用 NProgress
+    NProgress.start();
+    NProgress.configure({ easing: 'ease', speed: 1000 });
+
+    useEffect(() => {
+        // 使用 NProgress
+        NProgress.done();
+    }, []) 
+
     return (
         <>
             <div className='app-wrapper'>

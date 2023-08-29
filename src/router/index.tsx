@@ -1,14 +1,11 @@
 import {  createHashRouter } from "react-router-dom";
 import {  Navigate, useLocation, useMatch } from "react-router"
-import { Suspense } from "react";
-
 import LoginPage from "../views/login/index";
 import ErrorPage404 from '../views/errorPage/404'
 import Layout from "../layout/index";
 import DashBoard from "../views/dashboard/index";
 import { useStore } from "@/store";
-
-
+// NProgress Configuration
 const routerMap: { [key: string]: any } = {
   '/login': { name: '登录', icon: 'icon-login', static: true},
   '/404': { name: '404',  static: true },
@@ -51,19 +48,16 @@ let routerConfig = [
       let location = useLocation()
       let  store = useStore();
       let { user } = store;
-      let a = useMatch(location.pathname)
-      console.log(a)
-      //根据router中的title 更换页面document 的title
+      let routeInfo = useMatch(location.pathname)
+
       
-
-
-
-      if (!user.isLogin && checkPermission(location.pathname)) {
+      if (!user.isLogin) {
         return <Navigate to = '/login'></Navigate>
       } else { 
         if (checkPermission(location.pathname)) { 
+
           return <Layout/>
-        }else{ 
+        } else { 
           return <Navigate to = '/404'></Navigate>
         }
       }

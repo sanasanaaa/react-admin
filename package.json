@@ -28,10 +28,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development craco start",
-    "build:prd": "cross-env NODE_ENV=production GENERATE_SOURCEMAP=false craco build",
-    "build:uat": "cross-env NODE_ENV=test craco build",
-    "build:dev": "cross-env NODE_ENV=developments craco build",
+    "start": "cross-env NODE_ENV=dev craco start",
+    "build:prd": "cross-env NODE_ENV=prod GENERATE_SOURCEMAP=false craco build",
+    "build:uat": "cross-env NODE_ENV=uat craco build",
+    "build:dev": "cross-env NODE_ENV=dev craco build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

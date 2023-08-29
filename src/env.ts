@@ -1,24 +1,25 @@
 /**
  * The type of environment.
  */
-type env = 'development' | 'production' | 'test';
+type env = 'dev' | 'prod' | 'uat';
 
-const envType:env = process.env.NODE_ENV ? process.env.NODE_ENV:"production";
+const envType: env = process.env.NODE_ENV as env || 'prod';
+
 
 /**
  * The configuration object for each environment type.
  */
 let config: any = {
-    development: {
+    dev: {
         env: 'dev',
-        baseUrl: 'http://localhost:3000',
+        baseUrl: 'http://localhost:3000'
     },
-    production: {
+    prod: {
         env: 'prod',
         baseUrl: '',
     },
-    test: {
-        env: 'test',
+    uat: {
+        env: 'uat',
         baseUrl: '',
     }
 }
