@@ -1,14 +1,18 @@
 import {  createHashRouter } from "react-router-dom";
-import {  Navigate, useLocation, useMatch } from "react-router"
+import {  Navigate,redirect, Outlet, useLocation, useMatch, useNavigate } from "react-router"
 import LoginPage from "../views/login/index";
 import ErrorPage404 from '../views/errorPage/404'
 import Layout from "../layout/index";
 import DashBoard from "../views/dashboard/index";
+import BarChart from "../views/charts/barchart/index";
+import LineChart from "../views/charts/linechart/index";
+import PieChart from "../views/charts/piechart/index";
 import { useStore } from "@/store";
+
 // NProgress Configuration
 const routerMap: { [key: string]: any } = {
   '/login': { name: '登录', icon: 'icon-login', static: true},
-  '/404': { name: '404',  static: true },
+  '/': { name: '404',  static: true },
   '/dashboard': { name: '首页',  static: true },
   '/guide': { name: '引导页', static: true },
   '/permission': { name: '权限测试页', static: true },
@@ -17,18 +21,17 @@ const routerMap: { [key: string]: any } = {
 
 
 
+let ignorePaths=['/login','/error','/nopermission']
 
 // 检查权限
 function checkPermission(pathname:string) { 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  let { user } = useStore();
-  let { permissions } = user;
-  if (routerMap[pathname]?.static) { 
+  if (ignorePaths.includes(pathname)) {
     return true
-  } else { 
-    return permissions.includes(pathname)
   }
+  return true
 }
+
 
 let routerConfig = [
   {
@@ -37,29 +40,20 @@ let routerConfig = [
     Component: ()=><LoginPage></LoginPage>
   },
   {
-    path: '/404',
-    title: '404',
-    Component: ()=><ErrorPage404/>
-  },
-  {
     path: '/',
     name:'初始',
     Component() {
       let location = useLocation()
+      const navigate = useNavigate();
       let  store = useStore();
       let { user } = store;
-      let routeInfo = useMatch(location.pathname)
-
-      
       if (!user.isLogin) {
         return <Navigate to = '/login'></Navigate>
       } else { 
-        if (checkPermission(location.pathname)) { 
-
-          return <Layout/>
-        } else { 
-          return <Navigate to = '/404'></Navigate>
-        }
+        if (!checkPermission(location.pathname)) {
+          navigate('/nopermission', {replace:true})
+        } 
+        return <Layout />
       }
       //路由守卫
     },
@@ -71,18 +65,56 @@ let routerConfig = [
       },
       {
       
+        path: 'document',
+        title: '引导页',
+        Component: () => <div>document</div>,
+      },
+      {
+      
         path: 'guide',
-        title:'引导页',
+        title: '引导页',
         Component: () => <div>guide</div>,
       },
       {
-        path: 'permission',
-        Component: () => <div>permission</div>,
+        path: 'nopermission',
+        Component: () => <div>无权限 </div>,
+
       },
       {
         path: 'components',
-        Component: () => <div>components</div>,
-      }
+        title:'组件',
+        Component: () => <div> <Outlet></Outlet> </div>,
+        children: [
+          {
+            path: 'table',
+            Component:()=> <div>table</div>
+          }
+        ]
+      },
+      {
+        path: 'charts',
+        title:'图表',
+        Component: () => <div> <Outlet></Outlet> </div>,
+        children: [
+          {
+            path: 'linechart',
+            Component:()=> <LineChart/>
+          },
+          {
+            path: 'barchart',
+            Component:()=> <BarChart/>
+          },
+          {
+            path: 'piechart',
+            Component:()=><PieChart/>
+          }
+        ]
+      },
+      {
+        path: '/404',
+        title: '404',
+        Component: ()=><ErrorPage404/>
+      },
     ]
   },
   {
@@ -92,8 +124,6 @@ let routerConfig = [
 ]
 
 // 
-
-
 
 
 export const routes = createHashRouter(routerConfig)

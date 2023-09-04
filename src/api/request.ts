@@ -15,7 +15,10 @@ request.interceptors.request.use((config) => {
 
 
 request.interceptors.response.use((response) => { 
-    return response;
+    if (response.data.status === 200) { 
+        return response.data.data;
+    }
+  
 })
 
 

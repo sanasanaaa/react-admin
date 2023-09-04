@@ -5,3 +5,26 @@
     display: flex;
 }
 
+
+/* 入场动画过程 */
+.AA-enter{
+    transform: translateX(200px)
+  }
+  .AA-enter-active{
+    transition: 2s;
+    transform: translateX(0px)
+  }
+  .AA-enter-done{
+    transform: translateX(0px)
+  }
+  /* 出场动画过程 */
+  .AA-exit{
+    transform: translateX(0px)
+  }
+  .AA-exit-active{
+    transition: 2s;
+    transform: translateX(200px)
+  }
+  .AA-exit-done{
+    transform: translateX(200px)
+  }

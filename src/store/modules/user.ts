@@ -20,8 +20,9 @@ class userStore {
     login = (loginForm: { password: string, username: string }) => {
         return new Promise((resolve, reject) => {
             userApi.login(loginForm).then((res: any) => {
-                console.log(res)
+                let { roles } = res;
                 this.isLogin = true
+                this.permissions = roles;
                 resolve(true)
             }).catch((err: any) => { 
                 reject(err)

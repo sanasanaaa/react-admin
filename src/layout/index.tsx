@@ -31,7 +31,7 @@ function LayoutView() {
                     <SideNav></SideNav>
                     <Layout>
                         <HeaderView></HeaderView>
-                        <Content style={{ margin: '24px 16px', padding: 24,minHeight: 280,}}>
+                        <Content style={{ margin: '24px 16px', padding: 24, minHeight: 280, }}>
                             <Outlet></Outlet>
                         </Content>
                     </Layout>
