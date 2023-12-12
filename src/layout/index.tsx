@@ -3,6 +3,7 @@ import { Layout } from 'antd'
 import SideNav from './SideNav'
 import HeaderView from './Header'
 import { Outlet } from 'react-router'
+
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css';
 import './style.scss'

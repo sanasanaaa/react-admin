@@ -1,7 +1,7 @@
 import userMock from "./user";
 
 function devMock() { 
-    userMock();
+    // userMock();
 }
 
 export default devMock;

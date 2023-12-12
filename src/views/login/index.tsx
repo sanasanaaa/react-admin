@@ -3,6 +3,8 @@ import './style.scss'
 import { useNavigate } from 'react-router';
 import { observer } from 'mobx-react';
 import { useStore } from '@/store';
+import crypto from 'crypto-js';
+console.log( crypto.MD5('123456').toString())
 function LoginPage() { 
     const [form] = Form.useForm();
     const navigate=useNavigate();
@@ -12,8 +14,10 @@ function LoginPage() {
 
     //跳转到
     async function login(formValues: { password: string, username: string }) {
-        
+
         if (!formValues.username || !formValues.password) return false;
+
+        formValues.password = crypto.MD5(formValues.password).toString();
 
         const loginRes = await user.login(formValues).catch((err:any) => { 
             return false

@@ -46,37 +46,11 @@ function SideNav() {
    
     const items: MenuProps['items'] = [
       getMenuItem({ label: '首页', key: 'dashboard', icon: <DashboardOutlined /> }),
-      getMenuItem({ label: '文档', key: 'document', icon: <FileTextOutlined /> }),
-      getMenuItem({ label: '引导页', key: 'guide', icon: <BarsOutlined /> }),
-      getMenuItem({
-        label: '组件',
-        key: 'components',
-        icon: <AppstoreAddOutlined />,
-        children: [
-          {
-            label: '表格',
-            key:'table'
-          }
-      ]}),
-      getMenuItem({
-        label: '图表',
-        key: 'charts',
-        icon: <BarChartOutlined />,
-        children: [
-          {
-            label: '折线图',
-            key:'linechart'
-          },
-          {
-            label: '饼图',
-            key:'piechart'
-          },
-          {
-            label: '柱状图',
-            key:'barchart'
-          }
-        ]
-      }),
+      getMenuItem({ label: '推荐管理', key: 'document', icon: <FileTextOutlined /> }),
+      getMenuItem({ label: '内容管理', key: 'guide', icon: <BarsOutlined /> }),
+      getMenuItem({ label: '媒体库', key: 'mediums', icon: <BarsOutlined /> }),
+      getMenuItem({ label: '运营位设置', key: 'systemSet', icon: <BarsOutlined /> }),
+      getMenuItem({ label: '我的商品', key: 'shop', icon: <BarsOutlined /> }),
       getMenuItem({ label: '错误页面', key: '404',  }),
     ];
   

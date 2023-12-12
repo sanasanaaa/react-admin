@@ -15,6 +15,8 @@ const routerMap: { [key: string]: any } = {
   '/': { name: '404',  static: true },
   '/dashboard': { name: '首页',  static: true },
   '/guide': { name: '引导页', static: true },
+  '/pageSet': { name: '首页设置', static: true },
+  '/shopSet': { name: '商品列表', static: true },
   '/permission': { name: '权限测试页', static: true },
   '/components': { name: '组件', static: true },
 };
@@ -71,9 +73,21 @@ let routerConfig = [
       },
       {
       
+        path: 'systemSet',
+        title: '系统设置',
+        Component: () => <div>systemSet</div>,
+      },
+      {
+      
         path: 'guide',
         title: '引导页',
         Component: () => <div>guide</div>,
+      },
+      {
+      
+        path: 'shop',
+        title: '商品',
+        Component: () => <div>商品</div>,
       },
       {
         path: 'nopermission',
