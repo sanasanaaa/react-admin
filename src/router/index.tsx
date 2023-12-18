@@ -4,6 +4,8 @@ import LoginPage from "../views/login/index";
 import ErrorPage404 from '../views/errorPage/404'
 import Layout from "../layout/index";
 import DashBoard from "../views/dashboard/index";
+import Goods from "../views/goods/index";
+import Models from "../views/model/index";
 import BarChart from "../views/charts/barchart/index";
 import LineChart from "../views/charts/linechart/index";
 import PieChart from "../views/charts/piechart/index";
@@ -85,9 +87,15 @@ let routerConfig = [
       },
       {
       
+        path: 'models',
+        title: '模型',
+        Component: () => <Models />,
+      },
+      {
+      
         path: 'shop',
         title: '商品',
-        Component: () => <div>商品</div>,
+        Component: () => <Goods/>,
       },
       {
         path: 'nopermission',

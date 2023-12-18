@@ -12,7 +12,7 @@ const envType: env = process.env.NODE_ENV as env || 'prod';
 let config: any = {
     dev: {
         env: 'dev',
-        baseUrl: 'http://127.0.0.1:3000'
+        baseUrl: 'http://127.0.0.1:9000'
     },
     prod: {
         env: 'prod',

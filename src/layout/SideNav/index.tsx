@@ -48,8 +48,8 @@ function SideNav() {
       getMenuItem({ label: '首页', key: 'dashboard', icon: <DashboardOutlined /> }),
       getMenuItem({ label: '推荐管理', key: 'document', icon: <FileTextOutlined /> }),
       getMenuItem({ label: '内容管理', key: 'guide', icon: <BarsOutlined /> }),
-      getMenuItem({ label: '媒体库', key: 'mediums', icon: <BarsOutlined /> }),
       getMenuItem({ label: '运营位设置', key: 'systemSet', icon: <BarsOutlined /> }),
+      getMenuItem({ label: '模型管理', key: 'models', icon: <BarsOutlined /> }),
       getMenuItem({ label: '我的商品', key: 'shop', icon: <BarsOutlined /> }),
       getMenuItem({ label: '错误页面', key: '404',  }),
     ];

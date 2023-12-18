@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { Button, message } from 'antd';
 import  envConfig  from '@/env';
 
 let request = axios.create({
@@ -14,12 +14,16 @@ let request = axios.create({
 // })
 
 
-// request.interceptors.response.use((response) => { 
-//     if (response.data.status === 200) { 
-//         return response.data.data;
-//     }
+request.interceptors.response.use(async (response) => { 
+    if (response.data.code === 200) {
+        console.log('请求正常')
+        return response.data.data;
+    } else { 
+        console.log('请求失败')
+        throw new Error(response.data.msg);
+    }
   
-// })
+})
 
 
 export default request;

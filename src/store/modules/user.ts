@@ -25,6 +25,7 @@ class userStore {
                 this.permissions = roles;
                 resolve(true)
             }).catch((err: any) => { 
+                console.log(err)
                 reject(err)
             })
         })

@@ -3,14 +3,16 @@ import './style.scss'
 import { useNavigate } from 'react-router';
 import { observer } from 'mobx-react';
 import { useStore } from '@/store';
+import React from 'react';
 import crypto from 'crypto-js';
-console.log( crypto.MD5('123456').toString())
-function LoginPage() { 
+
+function LoginPage() {
     const [form] = Form.useForm();
     const navigate=useNavigate();
     let { user } = useStore();
-    const [messageApi, contextHolder] = message.useMessage()
+    // const [messageApi,message, contextHolder] = message.useMessage()
 
+    
 
     //跳转到
     async function login(formValues: { password: string, username: string }) {
@@ -19,21 +21,13 @@ function LoginPage() {
 
         formValues.password = crypto.MD5(formValues.password).toString();
 
-        const loginRes = await user.login(formValues).catch((err:any) => { 
-            return false
+        const loginRes = await user.login(formValues).catch((err: any) => { 
+            let errMsg = <span>{ `${err}`}</span>
+            message.error(errMsg)
         })
-        
         if (loginRes) {
             navigate('/dashboard');
-        } else { 
-            messageApi.open({
-                type: 'error',
-                content: '登录失败，请检查账号密码。',
-                duration: 2,
-              });
-         
         }
-       
     }
 
     return (
