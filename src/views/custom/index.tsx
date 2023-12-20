@@ -55,37 +55,34 @@ const columns: ColumnsType<DataType> = [
 const data: DataType[] = [
   {
     id:'1',
-    name: '纯电车模型',
+    name: 'aaa',
     createTime: '2023/12/01',
     creater:'zyf',
     tags: ['nice', 'developer'],
   },
   {
     id:'2',
-    name: '燃油车模型',
+    name: 'bbb',
     createTime: '2023/12/01',
     creater:'zyf',
     tags: ['nice', 'developer'],
   },
   {
     id:'3',
-    name: '增程车模型',
+    name: 'ccc',
     createTime: '2023/12/01',
     creater:'zyf',
     tags: ['nice', 'developer'],
   }
 ];
 
-function Model(props: any) { 
+function CustomMessage(props: any) { 
     let { system } = useStore();
     let [showDetail, setShowDetail] = useState(true)
 
   return (<>
-        <div style={{display:'flex'}}>
-          <Button onClick={()=> setShowDetail(!showDetail)}>+ 新增模型</Button>
-        </div>
        <Table columns={columns} dataSource={data} style={{marginTop:'10px'}}/>
     </>)
 }
 
-export default observer(Model)
+export default observer(CustomMessage)

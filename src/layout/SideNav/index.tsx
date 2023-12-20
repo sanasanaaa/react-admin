@@ -51,6 +51,7 @@ function SideNav() {
       getMenuItem({ label: '运营位设置', key: 'systemSet', icon: <BarsOutlined /> }),
       getMenuItem({ label: '模型管理', key: 'models', icon: <BarsOutlined /> }),
       getMenuItem({ label: '我的商品', key: 'shop', icon: <BarsOutlined /> }),
+      getMenuItem({ label: '顾客列表', key: 'custom', icon: <BarsOutlined /> }),
       getMenuItem({ label: '错误页面', key: '404',  }),
     ];
   

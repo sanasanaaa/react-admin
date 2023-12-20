@@ -5,6 +5,7 @@ import ErrorPage404 from '../views/errorPage/404'
 import Layout from "../layout/index";
 import DashBoard from "../views/dashboard/index";
 import Goods from "../views/goods/index";
+import Custom from "../views/custom/index";
 import Models from "../views/model/index";
 import BarChart from "../views/charts/barchart/index";
 import LineChart from "../views/charts/linechart/index";
@@ -19,6 +20,7 @@ const routerMap: { [key: string]: any } = {
   '/guide': { name: '引导页', static: true },
   '/pageSet': { name: '首页设置', static: true },
   '/shopSet': { name: '商品列表', static: true },
+  '/custom': { name: '客户列表', static: true },
   '/permission': { name: '权限测试页', static: true },
   '/components': { name: '组件', static: true },
 };
@@ -96,6 +98,12 @@ let routerConfig = [
         path: 'shop',
         title: '商品',
         Component: () => <Goods/>,
+      },
+      {
+      
+        path: 'custom',
+        title: '顾客',
+        Component: () => <Custom/>,
       },
       {
         path: 'nopermission',

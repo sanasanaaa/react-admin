@@ -6,57 +6,48 @@ import type { ColumnsType } from 'antd/es/table';
 import GoodDetail from "./components/goodDetail";
 
 interface DataType {
-  key: string;
+  id: string
+  creater: string
+  createTime: string
   name: string;
-  age: number;
-  address: string;
   tags: string[];
 }
 
 const columns: ColumnsType<DataType> = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'id',
+    dataIndex: 'id',
+    key: 'id',
     render: (text) => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: '名称',
+    dataIndex: 'name',
+    key: 'name',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: '创建时间',
+    dataIndex: 'createTime',
+    key: 'createTime',
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
+    title: '创建者',
+    key: 'creater',
+    dataIndex: 'creater',
+    render: (text) => (
       <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
+        {text}
       </>
     ),
   },
   {
-    title: 'Action',
+    title: '操作',
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        <Button>详情</Button>
+        <Button>修改</Button>
+        <Button>删除</Button>
       </Space>
     ),
   },
@@ -64,36 +55,25 @@ const columns: ColumnsType<DataType> = [
 
 const data: DataType[] = [
   {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
+    id:'1',
+    name: 'Audi RS6',
+    createTime: '2023/12/01',
+    creater:'zyf',
     tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
+  }
 ];
 
 function Goods(props: any) { 
     let { system } = useStore();
     let [showDetail, setShowDetail] = useState(true)
 
-    return (<>
-        <Button onClick={()=> setShowDetail(!showDetail)}>+ 新增</Button>
-        <GoodDetail title='新增商品' show={showDetail} onclose={()=> setShowDetail(false)}  />
-       <Table columns={columns} dataSource={data} />
+  return (<>
+        <div style={{display:'flex'}}>
+          <Button onClick={()=> setShowDetail(!showDetail)}>+ 新增商品</Button>
+        </div>
+        
+        <GoodDetail title='新增商品' show={showDetail} onclose={() => setShowDetail(false)}  />
+       <Table columns={columns} dataSource={data} style={{marginTop:'10px'}}/>
     </>)
 }
 
